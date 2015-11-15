@@ -1,0 +1,21 @@
+[user]
+    name = Jaroslaw Surkont
+    email = jarek.surkont@gmail.com
+[core]
+    editor = vim
+    excludesfile = ~/.gitexcludes
+[merge]
+    tool = vimdiff
+[push]
+    default = simple
+[grep]
+    lineNumber = true
+[diff]
+    tool = diffmerge
+[alias]
+    co = checkout
+    ci = commit
+    br = branch
+    st = status
+    last = log -1 HEAD
+    unstage = reset HEAD --
