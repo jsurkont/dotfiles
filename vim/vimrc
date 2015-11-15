@@ -75,3 +75,9 @@ set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
 set statusline+=%b,0x%-8B\                   " current char
 set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
 set laststatus=2        " Always display statusline, even if there's only one window in vim
+
+" Git - Displaying git content in a split window
+" move the cursor to line 0 if doing a git commit
+autocmd BufRead *.git/COMMIT_EDITMSG 0
+" split window with currect git diff --cached
+autocmd BufRead *.git/COMMIT_EDITMSG DiffGitCached -C --patch --stat --no-ext-diff | wincmd L

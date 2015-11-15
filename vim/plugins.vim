@@ -7,7 +7,7 @@ Plug 'nanotech/jellybeans.vim'
 " a syntax checking plugin for Vim that integrates with external syntax checkers to provide in-editor feedback on your code as you make changes
 Plug 'scrooloose/syntastic'
 " Autocompletion
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'for': ['c', 'cpp', 'python', 'perl', 'java', 'JavaScript'] }
 " JSON support
 Plug 'elzr/vim-json'
 " JavaScript support
