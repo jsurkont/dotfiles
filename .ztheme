@@ -1,0 +1,62 @@
+#! /bin/zsh
+
+vEnv () {
+    # If virtual env is set show it in cyan
+    if [[ $VIRTUAL_ENV != "" ]]
+    then
+        echo " %F{cyan}($(basename $VIRTUAL_ENV))%f" && return
+    fi
+    return
+}
+
+disable_zsh_vcs () {
+    zstyle ':vcs_info:*' enable ''
+    # replacing precmd declaration needed to prevent $(git ls-files)
+    precmd () {
+        # next line needed to cleanup the prompt after disabling
+        vcs_info
+    }
+}
+
+enable_zsh_vcs () {
+    zstyle ':vcs_info:*' enable git svn hg
+    precmd () {
+        # precmd needed to trigger info on untracked files
+        if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
+            zstyle ':vcs_info:*' formats ' %B%F{yellow}[%b%c%u%F{yellow}]'
+        } else {
+            zstyle ':vcs_info:*' formats ' %B%F{yellow}[%b%c%u%F{red}▀%F{yellow}]' # Red
+        }
+        vcs_info
+}
+}
+
+# Functions to enable getting information from repositories
+autoload -Uz vcs_info
+
+zstyle ':vcs_info:*' stagedstr '%F{green}▀'
+zstyle ':vcs_info:*' unstagedstr '%F{yellow}▀'
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:(hg):*' branchformat '%F{black}hg %F{yellow}%b'
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{red}:%F{green}%r'
+
+# Activate specified source code managers
+enable_zsh_vcs
+
+# Return code of last process
+returncode="%(?.. %F{red}[%?])%f"
+
+# Setup prompt
+base_prompt="%F{white}[%D{%d-%b} %T] %B%(!.%F{red}%m.%F{green}%n@%U%m%u)%k: %B%F{blue}%~"
+post_prompt=" %b%f%k"
+
+# This is required to trigger the replacement of ${vcs_info_msg_0_} by real information
+setopt promptsubst
+
+# With double quote prompts you need to escape the dollar sign in functions and parameter
+# expansions. Also don't forget the promptsubst option.
+# Explicit newline is needed to break the prompt \n is not interpreted by ZSH
+PS1="$base_prompt$returncode\${vcs_info_msg_0_}\$(vEnv)
+%#$post_prompt"
+PS2="$base_prompt %_>$post_prompt"
+PS3="$base_prompt ?#$post_prompt"
