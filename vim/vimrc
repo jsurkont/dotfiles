@@ -20,8 +20,9 @@ set modelines=1
 set autoindent
 filetype indent on      " load filetype-specific indent files
 filetype plugin on
-nnoremap <tab> %        " Tab in normal mode is used to jump between parenthesis
-vnoremap <tab> %        " Tab in normal mode is used to jump between parenthesis
+" Tab in normal mode is used to jump between parenthesis
+nnoremap <tab> %
+vnoremap <tab> %
 
 " UI Layout
 set number              " show line numbers
@@ -38,25 +39,33 @@ set wildignore=*.o,*~,*.pyc   " Ignore compiled files
 set ignorecase smartcase          " make searches case-insensitive, unless they contain upper-case letters
 set incsearch           " search as characters are entered
 set incsearch showmatch hlsearch  " show the `best match so far' as search strings are typed and highlight it
-nnoremap <C-L> :noh<CR><C-L>            " Map <C-L> (redraw screen) to also turn off search highlighting until the next search
+" Map <C-L> (redraw screen) to also turn off search highlighting until the next search
+nnoremap <C-L> :noh<CR><C-L>
 
 " Folding
 set foldmethod=indent   " fold based on indent level
-set foldnestmax=10      " max 10 depth
-set foldenable          " don't fold files by default on open
+set foldenable          " enable folding
+set foldlevelstart=10   " open most folds by default
+set foldnestmax=10      " max 10 nested fold
+" space open/closes folds
 nnoremap <space> za
-set foldlevelstart=10   " start with fold level of 1
 
 " Line Shortcuts
-map Y y$                " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy, which is the default
+" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy, which is the default
+map Y y$
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
 
 " Window
 set splitright          " Force vsplit to open new window on the right
 set splitbelow          " Force vsplit to open new window below
-map <C-H> <C-W>h        " Move between split windows more naturally
+" Move between split windows more naturally
+map <C-H> <C-W>h
 map <C-J> <C-W>j
 map <C-K> <C-W>k
-map <C-L> <C-W>l        " replaces the "Redraw screen" action. :redraw doesn't do the same thing.
+" replaces the 'Redraw screen' action. :redraw doesn't do the same thing.
+map <C-L> <C-W>l
 
 " vim's status line
 set statusline=   " clear the statusline for when vimrc is reloaded
