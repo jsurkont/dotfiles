@@ -60,3 +60,10 @@ if [ -f /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh ]; then
     export VIRTUALENVWRAPPER_SCRIPT=/usr/share/virtualenvwrapper/virtualenvwrapper.sh
     source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
 fi
+
+# Set RVM
+source $HOME/.rvm/scripts/rvm
+
+# Set NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Load NVM

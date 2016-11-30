@@ -1,10 +1,19 @@
 #! /bin/zsh
 
-vEnv () {
-    # If virtual env is set show it in cyan
+pythonEnv () {
+    # Show active Python virtual env if set
     if [[ $VIRTUAL_ENV != "" ]]
     then
         echo " %F{cyan}($(basename $VIRTUAL_ENV))%f" && return
+    fi
+    return
+}
+
+nvmEnv () {
+    # Show active Node version (NVM) if set
+    if [[ $NVM_BIN != "" ]]
+    then
+        echo " %F{magenta}(node $(basename $(dirname $NVM_BIN)))%f" && return
     fi
     return
 }
@@ -56,7 +65,7 @@ setopt promptsubst
 # With double quote prompts you need to escape the dollar sign in functions and parameter
 # expansions. Also don't forget the promptsubst option.
 # Explicit newline is needed to break the prompt \n is not interpreted by ZSH
-PS1="$base_prompt$returncode\${vcs_info_msg_0_}\$(vEnv)
+PS1="$base_prompt$returncode\${vcs_info_msg_0_}\$(pythonEnv)\$(nvmEnv)
 %#$post_prompt"
 PS2="$base_prompt %_>$post_prompt"
 PS3="$base_prompt ?#$post_prompt"
