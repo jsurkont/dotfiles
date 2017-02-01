@@ -62,8 +62,13 @@ if [ -f /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh ]; then
 fi
 
 # Set RVM
-source $HOME/.rvm/scripts/rvm
+if [ -f $HOME/.rvm/scripts/rvm ]; then
+    export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+    source $HOME/.rvm/scripts/rvm
+fi
 
 # Set NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Load NVM
+if [ -f $HOME/.nvm/nvm.sh ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Load NVM
+fi
