@@ -10,6 +10,7 @@ syntax enable           " enable syntax processing
 
 " Colors 
 colorscheme jellybeans
+set t_ut=               " disable Background Color Erase (BCE) so color schemes work properly when Vim is used inside tmux and GNU screen
 
 " Spaces & Tabs 
 set tabstop=4           " 4 space tab
