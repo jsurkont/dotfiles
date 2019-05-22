@@ -1,5 +1,3 @@
-source ~/.vim/plugins.vim
-
 " General
 set noautochdir         " Don't chdir to the location where the file is by default
 set confirm             " Instead of failing a command because of unsaved changes, instead raise a dialogue asking if you wish to save changed files.
@@ -7,10 +5,6 @@ set mouse=a             " Enable use of the mouse for all modes
 set nobackup            " Don't create backup files
 set noswapfile          " Don't create swap files
 syntax enable           " enable syntax processing
-
-" Colors 
-colorscheme jellybeans
-set t_ut=               " disable Background Color Erase (BCE) so color schemes work properly when Vim is used inside tmux and GNU screen
 
 " Spaces & Tabs 
 set tabstop=4           " 4 space tab
@@ -91,3 +85,33 @@ set laststatus=2        " Always display statusline, even if there's only one wi
 autocmd BufRead *.git/COMMIT_EDITMSG 0
 " split window with currect git diff --cached
 autocmd BufRead *.git/COMMIT_EDITMSG DiffGitCached -C --patch --stat --no-ext-diff | wincmd L
+
+" download vim-plug if missing
+if empty(glob("~/.vim/autoload/plug.vim"))
+  silent! execute '!curl --create-dirs -fsSLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * silent! PlugInstall
+endif
+
+" declare plugins
+silent! if plug#begin()
+
+    " NERD tree will be loaded on the first invocation of NERDTreeToggle command
+    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+    " Jellybeans color scheme
+    Plug 'nanotech/jellybeans.vim'
+    " a syntax checking plugin for Vim that integrates with external syntax checkers to provide in-editor feedback on your code as you make changes
+    Plug 'scrooloose/syntastic'
+    " JSON support
+    Plug 'elzr/vim-json'
+    " Comments
+    Plug 'tpope/vim-commentary'
+    " Surround text with parentheses, brackets, quotes, XML tags, and more
+    Plug 'tpope/vim-surround'
+
+  call plug#end()
+endif
+
+" Colors 
+colorscheme jellybeans
+set t_ut=               " disable Background Color Erase (BCE) so color schemes work properly when Vim is used inside tmux and GNU screen
+
