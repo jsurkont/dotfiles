@@ -2,3 +2,5 @@
 .~*
 .idea
 *.py[co]
+.ropeproject
+.vscode

@@ -54,13 +54,6 @@ export PATH="$PATH:$HOME/system/bin"
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1 #Don't let virtualenv mess with our PS1
 
-# Set virtualenvwrapper
-if [ -f /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh ]; then
-    export WORKON_HOME=$HOME/.virtualenv
-    export VIRTUALENVWRAPPER_SCRIPT=/usr/share/virtualenvwrapper/virtualenvwrapper.sh
-    source /usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh
-fi
-
 # Set RVM
 if [ -f $HOME/.rvm/scripts/rvm ]; then
     export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
@@ -70,5 +63,10 @@ fi
 # Set NVM
 if [ -f $HOME/.nvm/nvm.sh ]; then
     export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # Load NVM
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Load nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # Load nvm bash_completion
+fi
+
+if [ -f $HOME/.meteor ]; then
+    export PATH="$PATH:$HOME/.meteor"
 fi

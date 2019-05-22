@@ -64,3 +64,7 @@ alias ls='ls --color=auto'
 alias '..'='cd ..'
 
 export PATH="$PATH:$HOME/system/bin"
+
+if [ "$(command -v kubectl)" ]; then
+    source <(kubectl completion bash)
+fi
