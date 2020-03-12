@@ -82,9 +82,9 @@ set laststatus=2        " Always display statusline, even if there's only one wi
 
 " Git - Displaying git content in a split window
 " move the cursor to line 0 if doing a git commit
-autocmd BufRead *.git/COMMIT_EDITMSG 0
+" autocmd BufRead *.git/COMMIT_EDITMSG 0
 " split window with currect git diff --cached
-autocmd BufRead *.git/COMMIT_EDITMSG DiffGitCached -C --patch --stat --no-ext-diff | wincmd L
+" autocmd BufRead *.git/COMMIT_EDITMSG DiffGitCached -C --patch --stat --no-ext-diff | wincmd L
 
 " download vim-plug if missing
 if empty(glob("~/.vim/autoload/plug.vim"))

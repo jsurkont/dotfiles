@@ -58,12 +58,12 @@ alias du='du -b'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
-alias l='ls -bhl'
-alias s='ls -bs'
+alias l='exa'
+alias ll='exa --long'
 alias ls='ls --color=auto'
 alias '..'='cd ..'
 
-export PATH="$PATH:$HOME/system/bin"
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/system/bin:$PATH"
 
 if [ "$(command -v kubectl)" ]; then
     source <(kubectl completion bash)
