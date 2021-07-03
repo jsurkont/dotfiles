@@ -61,8 +61,9 @@ alias cp='cp -i'
 alias l='exa'
 alias ll='exa --long'
 alias ls='ls --color=auto'
+alias cat='bat'
 alias '..'='cd ..'
-alias mkvenv='python3 -m venv venv && source venv/bin/activate && pip install --upgrade pip wheel setuptools'
+alias mkvenv='python3.9 -m venv venv && source venv/bin/activate && pip install --upgrade pip wheel setuptools'
 
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/system/bin:$PATH"
 
