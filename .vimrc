@@ -3,8 +3,8 @@ set noautochdir         " Don't chdir to the location where the file is by defau
 set confirm             " Instead of failing a command because of unsaved changes, instead raise a dialogue asking if you wish to save changed files.
 set mouse=a             " Enable use of the mouse for all modes
 set nobackup            " Don't create backup files
-set noswapfile          " Don't create swap files
 syntax enable           " enable syntax processing
+set updatetime=500     " The delay between typing stopped and writing to swap. It also influences the behavior of some plugins e.g. vim-gitgutter
 
 " Spaces & Tabs 
 set tabstop=4           " 4 space tab
@@ -62,29 +62,6 @@ map <C-K> <C-W>k
 " replaces the 'Redraw screen' action. :redraw doesn't do the same thing.
 map <C-L> <C-W>l
 
-" vim's status line
-set statusline=   " clear the statusline for when vimrc is reloaded
-set statusline+=%-3.3n\                      " buffer number
-set statusline+=%f\                          " file name
-set statusline+=%h%m%r%w                     " flags
-set statusline+=[%{strlen(&ft)?&ft:'none'},  " filetype
-set statusline+=%{strlen(&fenc)?&fenc:&enc}, " encoding
-set statusline+=%{&fileformat}]              " file format
-set statusline+=%=                           " right align
-set statusline+=%#Error#                     " color highlight for Syntastic error
-set statusline+=%{SyntasticStatuslineFlag()} " Syntastic error location
-set statusline+=%*                           " reset highlight
-set statusline+=%-8.(%)                      " offset
-set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}\  " highlight
-set statusline+=%b,0x%-8B\                   " current char
-set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
-set laststatus=2        " Always display statusline, even if there's only one window in vim
-
-" Git - Displaying git content in a split window
-" move the cursor to line 0 if doing a git commit
-" autocmd BufRead *.git/COMMIT_EDITMSG 0
-" split window with currect git diff --cached
-" autocmd BufRead *.git/COMMIT_EDITMSG DiffGitCached -C --patch --stat --no-ext-diff | wincmd L
 
 " download vim-plug if missing
 if empty(glob("~/.vim/autoload/plug.vim"))
@@ -107,9 +84,16 @@ silent! if plug#begin()
     Plug 'tpope/vim-commentary'
     " Surround text with parentheses, brackets, quotes, XML tags, and more
     Plug 'tpope/vim-surround'
+    " Lean & mean status/tabline for vim that's light as air
+    Plug 'vim-airline/vim-airline'
+    " shows git diff markers in the sign column and stages/previews/undoes hunks and partial hunks
+    Plug 'airblade/vim-gitgutter'
+
 
   call plug#end()
 endif
+
+map <F5> :NERDTreeToggle<CR>
 
 " Colors 
 colorscheme jellybeans
