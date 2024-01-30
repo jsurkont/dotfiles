@@ -1,21 +1,39 @@
 [user]
-    name = Jaroslaw Surkont
-    email = jarek.surkont@gmail.com
+name = 
+email = 
+
 [core]
-    editor = vim
-    excludesfile = ~/.gitexcludes
+editor = nvim
+excludesfile = ~/.gitexcludes
+pager = "bat -p"
+
+[init]
+defaultBranch = main
+
 [merge]
-    tool = vimdiff
+tool = vimdiff
+
 [push]
-    default = simple
+default = simple
+
 [grep]
-    lineNumber = true
+lineNumber = true
+
 [diff]
-    tool = diffmerge
+tool = diffmerge
+
 [alias]
-    co = checkout
-    ci = commit
-    br = branch
-    st = status
-    last = log -1 HEAD
-    unstage = reset HEAD --
+co = checkout
+ci = commit
+br = branch
+st = status
+last = log -1 HEAD
+recent = log -10 --oneline HEAD
+unstage = reset HEAD --
+
+[credential]
+	helper = cache
+
+[pull]
+	rebase = true
+	ff = only
