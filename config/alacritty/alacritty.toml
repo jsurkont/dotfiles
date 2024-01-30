@@ -1,0 +1,25 @@
+[cursor.style]
+blinking = "On"
+shape = "Block"
+
+[env]
+TERM = "alacritty-direct"
+
+[font]
+size = 14
+
+[font.bold]
+family = "JetBrainsMonoNL NF"
+style = "Bold"
+
+[font.bold_italic]
+family = "JetBrainsMonoNL NF"
+style = "Bold Italic"
+
+[font.italic]
+family = "JetBrainsMonoNL NF"
+style = "Italic"
+
+[font.normal]
+family = "JetBrainsMonoNL NF"
+style = "Regular"
