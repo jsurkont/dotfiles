@@ -1,11 +1,11 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+    bass source ~/.nvm/nvm.sh
+    pyenv init - | source
+else if status is-login
+    pyenv init --path | source
 end
 
 fish_add_path $HOME/.local/bin $HOME/.cargo/bin $HOME/.pyenv/bin
-
-status is-login; and pyenv init --path | source
-status is-interactive; and pyenv init - | source
 
 abbr -a -- rm 'rm -i'
 abbr -a -- mv 'mv -i'
@@ -17,5 +17,3 @@ abbr -a -- .. 'cd ..'
 set -U fish_greeting
 
 starship init fish | source
-
-bass source ~/.nvm/nvm.sh
