@@ -10,8 +10,8 @@ fish_add_path $HOME/.local/bin $HOME/.cargo/bin $HOME/.pyenv/bin
 abbr -a -- rm 'rm -i'
 abbr -a -- mv 'mv -i'
 abbr -a -- cp 'cp -i'
-abbr -a -- l exa
-abbr -a -- ll 'exa -l'
+abbr -a -- l eza
+abbr -a -- ll 'eza -l'
 abbr -a -- .. 'cd ..'
 
 set -U fish_greeting
