@@ -5,22 +5,19 @@ email =
 [core]
 editor = nvim
 excludesfile = ~/.gitexcludes
-pager = "bat -p"
+pager = delta
 
 [init]
 defaultBranch = main
 
 [merge]
-tool = nvimdiff
+conflictStyle = zdiff3
 
 [push]
 default = simple
 
 [grep]
 lineNumber = true
-
-[diff]
-tool = nvimdiff
 
 [alias]
 co = checkout
@@ -32,8 +29,14 @@ recent = log -10 --oneline HEAD
 unstage = reset HEAD --
 
 [credential]
-	helper = cache
+helper = cache
 
 [pull]
-	rebase = true
-	ff = only
+rebase = true
+ff = only
+
+[interactive]
+diffFilter = delta --color-only
+
+[delta]
+navigate = true  # use n and N to move between diff sections
